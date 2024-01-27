@@ -103,37 +103,41 @@ def matrix_power(m, p):
     return ret
 
 
-print(vector_dot_product([1, 2, 3], [4, 5, 6]))
-print(matrix_by_vector(
-    [[1, 2, 3],
-    [4, 5, 6]],
-    [1, 2, 3]
-))
-print(vector_by_matrix(
-    [1, 2],
-    [[1, 2, 3],
-    [4, 5, 6]],
-))
+def main():
+    print(vector_dot_product([1, 2, 3], [4, 5, 6]))
+    print(matrix_by_vector(
+        [[1, 2, 3],
+        [4, 5, 6]],
+        [1, 2, 3]
+    ))
+    print(vector_by_matrix(
+        [1, 2],
+        [[1, 2, 3],
+        [4, 5, 6]],
+    ))
 
-print(matrix_sum(
-    [[1, 2, 3],
-     [2, 3, 4],
-     [1, 1, 1]],
-    [[4, 5, 6],
-     [7, 8, 9],
-     [4, 5, 7]]
-))
+    print(matrix_sum(
+        [[1, 2, 3],
+         [2, 3, 4],
+         [1, 1, 1]],
+        [[4, 5, 6],
+         [7, 8, 9],
+         [4, 5, 7]]
+    ))
 
-print(matrix_power(
-    [[1, 2, 3],
-     [2, 3, 4],
-     [1, 1, 1]],
-    2
-))
+    print(matrix_power(
+        [[1, 2, 3],
+         [2, 3, 4],
+         [1, 1, 1]],
+        2
+    ))
 
-print(matrix_dot_product(
-    [[1, 2], [3, 4]],
-    [[5, 6], [7, 8]]
-))
+    print(matrix_dot_product(
+        [[1, 2], [3, 4]],
+        [[5, 6], [7, 8]]
+    ))
 
-print(identity(5))
+    print(identity(5))
+
+if __name__ == '__main__':
+    main()
