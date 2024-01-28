@@ -3,23 +3,16 @@ from sklearn.metrics import mean_squared_error
 from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 
-from utils import plot_predictions, plot_learning_curve
+from utils import Estimator, plot_regression_predictions
 
 
-class LinReg:
-    def __init__(self, lr=0.01) -> None:
-        self.lr = lr
-        self.epochs = 0
-        self.weights = None
-        self.bias = None
-        self.losses = []
-
+class LinReg(Estimator):
     def fit(self, X, y, epochs=1000):
         self.weights = np.random.rand(X.shape[1])
         self.bias = 0
 
-        for i in range(epochs):
-            y_pred = np.dot(X, self.weights) + self.bias
+        for _ in range(epochs):
+            y_pred = self.infer(X)
             self.losses.append(mean_squared_error(y, y_pred))
 
             dw = (1 / X.shape[0]) * np.dot(X.T, y_pred - y)
@@ -43,17 +36,17 @@ def main():
     estimator = LinReg()
     # "Fit" with random params
     y_pred_random = estimator.fit(X, y, epochs=0).infer(X)
-    print("Initial MSE:", mean_squared_error(y_pred_random, y))
+    print("Initial MSE:", mean_squared_error(y, y_pred_random))
 
     # Train for 1000 epochs
     estimator.fit(X_train, y_train, epochs=1000)
 
     y_pred = estimator.infer(X_test)
-    print("Final MSE:", mean_squared_error(y_pred, y_test))
+    print("Final MSE:", mean_squared_error(y_test, y_pred))
 
     # Predict on whole dataset
     y_pred = estimator.infer(X)
-    plot_predictions(X, y, y_pred)
+    plot_regression_predictions(X, y, y_pred)
 
 
 if __name__ == '__main__':
